@@ -8,12 +8,12 @@ Please visit my [website](https://blog.schallbert.de/macros-for-cnc/) for an in-
 
 There are many good third party resources out there to learn about writing them, e.g. [cnccookbook](https://www.cnccookbook.com/cnc-macro-programming-fanuc-macro-b/), too.
 
-The macros provided in this repository are somewhat specialized to [EdingCNC](https://edingcnc.com/)'s interpreter and are starting off a 'fork' of the non-version-controlled `Standard_Macro_V2-1e` by [Sorotec](https://www.sorotec.de/).
+The macros provided in this repository are somewhat narrowed to [EdingCNC](https://edingcnc.com/)'s interpreter and are starting off a 'fork' of the non-version-controlled `Standard_Macro_V2-1e` by [Sorotec](https://www.sorotec.de/).
 
 ## Disclaimer
-⚠️ Warning: Usage and tryout of macros on a physical machine are somewhat risky. There's no safety net. One variable entered incorrectly, a parameter at a wrong decimal place, or simply a line with an error or one that cannot be interpreted can lead to severe damage of machine, material and even injuries. Use the provided macros carefully and at your own risk. I do not take any liability.
+⚠️ Warning: Usage and tryout of macros on a physical machine are kind of risky. There's no safety net. One variable entered incorrectly, a parameter with a wrongly placed decimal separator, or simply a line with an error may lead to severe damage of machine, material, and even injuries. Use the provided macros carefully and at your own risk. I do not take any liability.
 
-💡 Idea: When you write a new routine, use of Code `M00` might simplify testing your routine. This code will pause the routine and wait for user input to continue.  
+💡 Idea: When you write a new routine, use of Code `M00` might simplify testing your routine. This code will pause the macro and wait for user input (Cycle Start) to continue.  
 
 ## Folder structure of this repo
 This repository has two folders for assets:
@@ -23,7 +23,7 @@ This repository has two folders for assets:
 The images are pulled by EdingCNC based on their file names. For dialog pictures, e.g. the `dlgmsg`'s title parameter has to exactly match the corresponding file name in `dialogPictures`.
 Within the `user` folder, icon names have to match the corresponding user macro number, e.g. `U3` for user `sub user_3`.
 
-## User Macro routines
+## User Macro routines in this repository
 ### Sub user_1: find Z-Zero
 Uses a tool length sensor (alternatively, a 3D edge finder) to detect workpiece surface height.
 Sets local `G92` working coordinate offset to `Z=0` at this place.
