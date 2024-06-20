@@ -20,7 +20,7 @@ This repository has two folders for assets:
 - `dialogPictures` that keeps images presented in the dialog message boxes
 - `op_f_key` that keeps icons of 'user' macro's function buttons
 
-The images are pulled by edingCNC based on their file names. For dialog pictures, e.g. the `dlgmsg`'s title parameter has to exactly match the corresponding file name in `dialogPictures`.
+The images are pulled by EdingCNC based on their file names. For dialog pictures, e.g. the `dlgmsg`'s title parameter has to exactly match the corresponding file name in `dialogPictures`.
 Within the `user` folder, icon names have to match the corresponding user macro number, e.g. `U3` for user `sub user_3`.
 
 ## User Macro routines
@@ -70,7 +70,7 @@ In here, you can define where on the machine tool length measurements shall take
 Calls all active axes' home routine, order is `ZYX` `ABC`
 
 ## Variables
-As per EdingCNC handbook `R4.03` chapter `3.1` "Systemparameters/ -variables, [RS274 NGC](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=823374) defines variables in the range of `#1...#5400`. Some of those parameters are read-only, some system-specific, some volatile and some others permanent. Let's shed some light here:
+As per EdingCNC handbook `R4.03` chapter `3.1` "Systemparameters/ -variables", [RS274 NGC](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=823374) defines variables in the range of `#1...#5400`. Some of those parameters are read-only, some system-specific, some volatile and some others permanent. Let's shed some light here:
 
 ### Properties
 - Parameters have the [double precision floating point](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) number data type.
@@ -79,10 +79,10 @@ As per EdingCNC handbook `R4.03` chapter `3.1` "Systemparameters/ -variables, [R
 
 ### Set / Get
 - A parameter can be assigned in a macro file as simply as this: `#100 = 47.11` which assigns the number `47.11` to the parameter with ID `#100`.
-- A parameter can be evauluated with different statements, example: `IF [[#5011] == [#5008]] THEN ...` for a deeper syntax overview, please refer to the EdingCNC handbook.
+- A parameter can be evaluated with different statements, example: `IF [[#5011] == [#5008]] THEN ...` for a deeper syntax overview, please refer to the EdingCNC handbook.
 
 ### Volatile
-Variable range `#26...#3999` are volatile and can be used by the programmer to save data temporarily. The data stored in this range is deleted on power off or when an alarm/emergency stop is active.
+Variables in range `#26...#3999` are volatile and can be used by the programmer to store data temporarily. The data assigned in this range is deleted on power off or in the event of an alarm/emergency stop.
 
 ### Permanent
 The variable range `#4000...#4999` are stored permanently on the system. They are free to be used.
@@ -98,7 +98,7 @@ EdingCNC uses some of these variables per default, e.g. `#4995...#4999`.
 | #4999 | toolLengthSensorChuck   | Switching point of the tool length sensor when no tool in spindle |
 
 ### System-reserved
-Generally speaking, the variable range from `#5000...#5999` should be avoided - most of them are used system-internally or intentionally left blank.
+Generally speaking, the variable range from `#5000...#5999` should be avoided by the programmer - most of them are used system-internally or  have intentionally been left blank.
 
 ### Write-protected 
 1. #1...#26 ; Code for letters where `#1=A`, `#26=Z`. Can be used in subroutines and macros.
