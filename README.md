@@ -70,7 +70,7 @@ In here, you can define where on the machine tool length measurements shall take
 Calls all active axes' home routine, order is `ZYX` `ABC`
 
 ## Variables
-As per EdingCNC handbook `R4.03` chapter `3.1` "Systemparameters/ -variables", [RS274 NGC](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=823374) defines variables in the range of `#1...#5400`. Some of those parameters are read-only, some system-specific, some volatile and some others permanent. Let's shed some light here:
+As per [EdingCNC handbook](https://edingcnc.com/wp-content/uploads/2021/11/edingcnc_manual_v4.03.pdf?_gl=1*12ihvf2*_up*MQ..*_ga*NDA5OTcxMDMwLjE3MjAyNzAxODE.*_ga_QW7BG3X45E*MTcyMDI3MDE3OS4xLjAuMTcyMDI3MDE3OS4wLjAuMA..*_ga_G8V3KZYQ63*MTcyMDI3MDE3OS4xLjAuMTcyMDI3MDE3OS4wLjAuMA..) `R4.03` chapter `3.1` "Systemparameters/ -variables", [RS274 NGC](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=823374) defines variables in the range of `#1...#5400`. Some of those parameters are read-only, some system-specific, some volatile and some others permanent. Let's shed some light here:
 
 ### Properties
 - Parameters have the [double precision floating point](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) number data type.
@@ -98,7 +98,7 @@ EdingCNC uses some of these variables per default, e.g. `#4995...#4999`.
 | #4999 | toolLengthSensorChuck   | Switching point of the tool length sensor when no tool in spindle |
 
 ### System-reserved
-Generally speaking, the variable range from `#5000...#5999` should be avoided by the programmer - most of them are used system-internally or  have intentionally been left blank.
+Generally speaking, the variable range from `#5000...#5999` should be avoided by the programmer - most of them are used system-internally or have intentionally been left blank.
 
 ### Write-protected 
 1. #1...#26 ; Code for letters where `#1=A`, `#26=Z`. Can be used in subroutines and macros.
@@ -109,9 +109,33 @@ Generally speaking, the variable range from `#5000...#5999` should be avoided by
 6. #5011 ; Incoming tool number on tool change
 7. #5012...#5014 ; Current tool's G43 offset (tool table)
 8. #5051...#5056 ; Sensor position in machine coordinates
-9. #5061...#5066 : Sensor position in work coordinates
-
-... @TODO schallbert: Continue here
+9. #5061...#5066 ; Sensor position in work coordinates
+10. #5067 ; Flag that is written to `true` if sensor has triggered during a Z-sensing run `G38.2`
+11. #5068 ; sensor's trigger point on Z-axis (machine coordinates)
+12. #5069 ; Handwheel step count
+13. #5070 ; spindle speed `S` in `r/sec`
+14. #5071...#5076 ; Current machine position (machine coordinates)
+15. #5081...#5086 ; Sensor position in joint coordinate system
+16. #5101...#5106 ; `MCA` Machine Change Area negative limit: Area the machine may not penetrate in normal operation, e.g. to protect vices
+17. #5111...#5116 ; `MCA` Machine Change Area positive limit
+18. #5121...#5126 ; Machine's home position (machine coordinates)
+19. #5131...#5133 ; `TCA` Tool Change Area negative limit: Area the machine may only access for tool changes
+20. #5242...#5143 ; `TCA` Tool Change Area positive limit
+21. #5150 ; Machine's coordinate type. `1 = Trivial/Cartesian` `2 = 4th axys cylinder as Y-axis` `Virtual C-axis` `4-17 = reserved` `18-30 = user defined`
+22. #5151 ; flag showing `ZHC` Z-height compensation status where `true = active`
+23. #5152 ; flag showing Spindle status where `true = on`
+24. #5161...5166 ; `G28` parking position one's axis values (machine coordinates)
+25. #5181...5186 ; `G30` parking position two's axis values (machine coordinates)
+26. #5190 ; `G68` flag showing rotation of coordinate system where `true = active`
+27. #5191...#5193 ; Axis rotation point (machine coordinates)
+28. #5194...#5196 ; Axis rotation angle around rotation point 
+29. #5200 ; flag showing `G51` scaling of coordinate system where `true = active`
+30. #5204 ; Non-uniform scaling: scale factor X
+31. #5205 ; Non-uniform scaling: scale factor Y
+32. #5206 ; Non-uniform scaling: scale factor Z `always 1.0`
+33. #5390 ; flag showing active Spindle selection, `M90 = 0` `M91 = 0` `M92 = 2`, `M93 = 3`, default 0
+34. #5391...#5393 ; active spindle offset X-Z
+35. #5394...#5397 ; maximum spindle speed for spindles `0...3`
 
 
 # Working
